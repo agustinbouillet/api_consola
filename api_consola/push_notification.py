@@ -12,12 +12,16 @@ from api_consola.cloud_messaging import send_multicast
 
 
 class PushNotification:
-    def __init__(self, credentials:str, tokens:str, log_filepath:str):
+    def __init__(self, credentials_file:str, tokens:str, log_filepath:str):
         self.tokens = tokens
-        self.credentials = credentials
+        self.credentials = credentials_file
         self.log_filepath = log_filepath
         logs_path = os.path.join(Path.cwd(), 'logs')
         self.log_filepath = log_filepath if log_filepath else logs_path
+        
+        if not firebase_admin._apps:
+            cred = credentials.Certificate(self.credentials) 
+            default_app = firebase_admin.initialize_app(cred)
 
         # logs configuration
         logging.basicConfig(
@@ -58,9 +62,6 @@ class PushNotification:
         group = kwargs.get('group')
         image = kwargs.get('image')
 
-        cred = credentials.Certificate(self.credentials)
-        firebase_admin.initialize_app(cred)
-        
         # Envio el post por cada grupo de ids.
         counter_lote = 1
         counter = 0

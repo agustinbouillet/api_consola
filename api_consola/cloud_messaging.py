@@ -18,9 +18,6 @@ import datetime
 from firebase_admin import messaging
 
 def send_multicast(log_filename, tokens=[], **kwargs):
-    # cred = credentials.Certificate(credentials_path)
-    # default_app = firebase_admin.initialize_app(cred)
-    # [START send_multicast_error]
     # These registration tokens come from the client FCM SDKs.
     registration_tokens = tokens
     
