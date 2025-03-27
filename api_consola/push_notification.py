@@ -8,8 +8,7 @@ from pathlib import Path
 import firebase_admin
 from firebase_admin import credentials
 
-from cloud_messaging import send_multicast
-
+from api_consola.cloud_messaging import send_multicast
 
 
 class PushNotification:
