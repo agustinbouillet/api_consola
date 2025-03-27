@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='apiconsola',
+    name='api_consola',
     version='1.0.0',
     author='Agustin Bouillet, Horacio Alvarado',
     author_email='bouilleta@jefatura.gob.ar',

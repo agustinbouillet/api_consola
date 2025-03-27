@@ -3,7 +3,7 @@ from argparse import ArgumentParser
 
 import pkg_resources
 
-from push_notifications import PushNotification
+from push_notification import PushNotification
 import sys
 
 def get_version():
