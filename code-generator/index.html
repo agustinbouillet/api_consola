@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Notificación push</title>
+    <!-- <link rel="stylesheet" href="__css/style.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Asap&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="author" href="humans.txt">
+    <style>
+      body {font-family: 'Asap', sans-serif;}
+    </style>
+  </head>
+  <body>
+
+    <div class="container mb-4">
+      <div class="row">
+        <div class="col-md-12">
+              <h1 class="h3">Notificación push</h1>
+        </div>
+        <div class="col-md-6">
+          <form action="" id="generate-code">
+            <fieldset>
+              <legend>Información</legend>
+              <div class="form-group">
+                <label for="id_title">Titulo</label>
+                <input class="form-control" type="text" id="id_title" name="title" required>
+              </div>
+              <div class="form-group">
+                <label for="id_body">Mensaje</label>
+                <textarea class="form-control" name="body" id="id_body" cols="30" rows="3" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="id_url">URL</label>
+                <input class="form-control" type="url" id="id_url" name="url" required>
+              </div>
+              <div class="form-group">
+                <label for="id_code">Código</label>
+                <input class="form-control" type="text" id="id_code" name="code" required>
+              </div>
+              <div class="form-group">
+                <label for="id_image">URL de la imagen</label>
+                <input class="form-control" type="url" id="id_image" name="image" >
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Propiedades del envío</legend>
+              <div class="form-group">
+                <label for="id_sleep">Sleep</label>
+                <input class="form-control" type="number" id="id_sleep" name="sleep" required>
+              </div>
+              <div class="form-group">
+                <label for="id_size">Size</label>
+                <input class="form-control" type="number" id="id_size" name="size" required>
+              </div>
+              <div class="form-group">
+                <label for="id_group">Group</label>
+                <input class="form-control" type="number" id="id_group" name="group" required>
+              </div>
+            </fieldset>
+
+            <fieldset class="">
+              <legend>Configuración</legend>
+              <div class="form-group">
+                <label for="id_tokens">Archivo de tokens</label>
+                <input class="form-control" type="text" id="id_tokens" name="tokens" required>
+              </div>
+              <div class="form-group">
+                <label for="id_credentials">Archivo de credenciales</label>
+                <input class="form-control" type="text" id="id_credentials" name="credentials" required>
+              </div>
+              <div class="form-group">
+                <label for="id_logs">Ruta para los archivos de registro</label>
+                <input class="form-control" type="text" id="id_logs" name="logs" required>
+              </div>
+            </fieldset>
+            <div class="mb-4">
+              <input  type="submit" class="btn btn-primary js-generate-code" value="enviar">
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <section>
+            <head>
+              <h1 class="h4">Código</h1>
+            </head>
+            <div class="border rounded p-2 mb-2">
+              <code id="js_code">api-consola --title="" --body="" --url="" --code="" --size= --sleep= --group= --image="" --credentials="" --tokens="" --logs-filepath=""</code>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-success js_code-copy">Copy</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script>
+    //<!--
+    var generate = function(){
+      var fields = document.getElementById('generate-code').elements;
+
+      // Armo el template
+      const tpl = `api-consola --title="${fields.id_title.value}" `
+          + `--body="${fields.id_body.value}" --url="${fields.id_url.value}" `
+          + `--code="${fields.id_code.value}" --size=${fields.id_size.value} `
+          + `--sleep=${fields.id_sleep.value} --group=${fields.id_group.value} `
+          + `--image="${fields.id_image.value}" `
+          + `--credentials="${fields.id_credentials.value}" `
+          + `--tokens="${fields.id_tokens.value}" `
+          + `--logs-filepath="${fields.id_logs.value}"`;
+
+          alert(tpl)
+      // Pego el codigo en el html
+      document.querySelector('#js_code').innerHTML = tpl;
+    }
+
+    //"#js_code"
+    var copy = function(selector){
+      var tpl = document.querySelector(selector).textContent;
+
+      var textarea = document.createElement('textarea');
+      textarea.value = tpl;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
+
+
+    document.addEventListener('click', function(e){
+      e.preventDefault();
+      if(e.target.classList.contains('js-generate-code')){
+        generate();
+      }
+
+      if(e.target.classList.contains('js_code-copy')){
+        copy("#js_code");
+      }
+    });
+    //-->
+    </script>
+  </body>
+</html>
