@@ -15,12 +15,12 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     keywords=['push', 'notifications', 'console', 'messages'],
     packages=setuptools.find_packages(),
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.10",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-    ],
+    # classifiers=[
+    #     "Programming Language :: Python :: 3",
+    #     "Programming Language :: Python :: 3.10",
+    #     "License :: OSI Approved :: MIT License",
+    #     "Operating System :: OS Independent",
+    # ],
     python_requires=">=3.10",
     install_requires=[
         'CacheControl==0.14.2',
