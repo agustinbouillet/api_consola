@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='api_consola',
-    version='1.0.9',
+    version='1.0.10',
     author='Agustin Bouillet, Horacio Alvarado',
     author_email='bouilleta@jefatura.gob.ar',
     url='https://www.argentina.gob.ar/',
@@ -17,7 +17,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     entry_points={
         'console_scripts': [
-            'api_consola = api_consola.api_consola.__main__:main',
+            'api_consola = api_consola.__main__:main',
         ],
     },
     classifiers=[
