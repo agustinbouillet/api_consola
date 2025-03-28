@@ -17,10 +17,8 @@ import datetime
 
 from firebase_admin import messaging
 
-def send_multicast(log_filename, tokens=[], **kwargs):
+def send_multicast(log_filename:str, registration_tokens:list=[], **kwargs:dict):
     # These registration tokens come from the client FCM SDKs.
-    registration_tokens = tokens
-    
     if (kwargs.get('url')):
         message = messaging.MulticastMessage(
             data = {
@@ -30,7 +28,7 @@ def send_multicast(log_filename, tokens=[], **kwargs):
                 "body": kwargs.get('body'),
                 "description": kwargs.get('body'),
                 'source': 'jefatura',
-        },
+            },
             tokens=registration_tokens,
         )
     else:
@@ -42,7 +40,7 @@ def send_multicast(log_filename, tokens=[], **kwargs):
             data = {
             },
             tokens=registration_tokens,
-        )    
+        )
 
     response = messaging.send_each_for_multicast(message)
     responses = response.responses
@@ -53,6 +51,7 @@ def send_multicast(log_filename, tokens=[], **kwargs):
             datetime_lote = datetime.datetime.now(
                 datetime.timezone(datetime.timedelta(0))
             ).astimezone()
+
             status = 1 if resp.success else 0
             f.write( f'{status},{registration_tokens[idx]},{datetime_lote}\n' )
 
@@ -60,4 +59,4 @@ def send_multicast(log_filename, tokens=[], **kwargs):
             # The order of responses corresponds to the order of 
             # the registration tokens.
             failed_tokens.append(registration_tokens[idx])
-            print('List of tokens that caused failures: {0}'.format(failed_tokens))
+            print(f'List of tokens that caused failures: {failed_tokens}')

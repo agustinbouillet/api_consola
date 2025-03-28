@@ -56,11 +56,11 @@ class PushNotification:
         title = kwargs.get('title')
         body = kwargs.get('body')
         url = kwargs.get('url')
+        image = kwargs.get('image')
         code = kwargs.get('code')
         sleep = kwargs.get('sleep')
         size = kwargs.get('size')
         group = kwargs.get('group')
-        image = kwargs.get('image')
 
         # Envio el post por cada grupo de ids.
         counter_lote = 1

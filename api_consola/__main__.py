@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import sys
+import textwrap
 from argparse import ArgumentParser
 
 import pkg_resources
 
 from api_consola.push_notification import PushNotification
-import sys
+
 
 def get_version():
     version = '0.0.0'
@@ -103,8 +105,8 @@ if __name__ == '__main__':
     if args.version:
         print(get_version())
         sys.exit(1)
-    
-    
+
+
     try:
         pn = PushNotification(
             args.credentials, args.tokens, args.logs_filepath)
@@ -117,5 +119,13 @@ if __name__ == '__main__':
             group=args.group,
             image=args.image)
     except:
-        print('Error: command invalid!')
+        line_width=78
+        text_line_1 = (
+            'Error: No fue posible enviar la notificación. '
+            'Compruebe los argumentos ingresados y vuelva a intentarlo.')
+        text_line_2 = 'Obtenga ayuda con el comando -h o --help.'
+        formated_text_line_1 = textwrap.fill(text_line_1, line_width)
+        formated_text_line_2 = textwrap.fill(text_line_2, line_width)
+        print(formated_text_line_1, '\n')
+        print(formated_text_line_2, '\n')
 
