@@ -1,15 +1,69 @@
-****# Notificación push
 
-## Intalación
+# 📦 API Consola
 
-crear un _virtual enviroment_ para el proyecto de python. Se recomienda 
-utilizar una versión de Python >= 3.6 
+## 🎛️ Instalación
+
+### Instalación utilizando PIP _(Pip Installs Packages)_
+
+Antes de instalar el paquete con el gestor de paquetes PIP, es conveniente crear un ambiente virtual. Puede utilizar el que mejor se adapte a su proyecto, o utilizar el manejador de ambientes incorporado en las últimas versiones de Python. 
+
+```bash
+python3 -m venv [nombre_del_ambiente]
+```
+Una vez finalizada la creación, activamos el ambiente utilizando el siguiente comando:
+
+```bash
+source [nombre_del_ambiente]/bin/activate
+```
+Algunos terminales muestran el nombre del ambiente en el inicio de línea.
+
+```bash
+➜  mydir source [nombre_del_ambiente]/bin/activate
+(nombre_del_ambiente) ➜  mydir
+```
+
+Instalamos el paquete
+
+```bash
+pip install --no-cache-dir git+https://github.com/agustinbouillet/api_consola
+```
+
+Si la instalación se realizó con éxito, podemos asegurarnos probando un comando sencillo.
+
+```bash
+(nombre_del_ambiente) ➜  sip python api_consola -V
+---------------------
+ API CONSOLA
+ Version: 1.0.10
+--------------------
+```
+
+### 🧰 Métodos
 
 
+## 🚀 Uso
 
-## Enviar notificaciones push
+Enviar notificaciones desde un programa realizando en Python.
 
-### Ayuda
+```python
+from api_consola.push_notification import PushNotification
+
+pn = PushNotification([str CREDENTIALS],[str TOKENS],[str LOGS_FILEPATH])
+args = {    
+    'title': [str TITLE],
+    'body': [str BODY],
+    'url': [str URL],
+    'image': [str IMAGE]
+    'code': [int CODE],
+    'sleep': [int SLEEP],
+    'size': [int SIZE],
+    'group': [int GROUP],
+}
+pn.send(**args)
+```
+
+
+##  Enviar notificaciones push
 
 Para obtener ayuda en la terminal puede ejecutar el comando `notificacion_push.py -h`. 
 El resultado será el siguiente.
