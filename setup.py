@@ -26,7 +26,7 @@ setuptools.setup(
         'setuptools==66.1.1',
         'firebase-admin==6.7.0',
     ],
-    project_urls={ # optional, use to add links
+    project_urls={
         "Bug Tracker": "https://github.com/yourusername/yourproject/issues",
         "Documentation": "https://yourproject.readthedocs.io/en/latest/",
         "Source Code": "https://github.com/yourusername/yourproject",
