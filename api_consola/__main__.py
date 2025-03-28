@@ -9,13 +9,14 @@ import sys
 def get_version():
     version = '0.0.0'
     try:
-        version = pkg_resources.require("MyProject")[0].version
+        version = pkg_resources.require("api_consola")[0].version
     except pkg_resources.DistributionNotFound:
         pass
 
     line = '-' * 78
     header = f'{line}\n PUSH NOTIFICATIONS\n Version: {version}\n{line}\n'
     return header 
+
 
 if __name__ == '__main__':
     parser = ArgumentParser(
@@ -104,16 +105,17 @@ if __name__ == '__main__':
         sys.exit(1)
     
     
-    # try:
-    pn = PushNotification(args.credentials, args.tokens, args.logs_filepath)
-    pn.send(title=args.title,
-        body=args.body,
-        url=args.url,
-        code=args.code,
-        sleep=args.sleep,
-        size=args.size,
-        group=args.group,
-        image=args.image)
-    # except:
-    #     print('Error: command invalid!')
+    try:
+        pn = PushNotification(
+            args.credentials, args.tokens, args.logs_filepath)
+        pn.send(title=args.title,
+            body=args.body,
+            url=args.url,
+            code=args.code,
+            sleep=args.sleep,
+            size=args.size,
+            group=args.group,
+            image=args.image)
+    except:
+        print('Error: command invalid!')
 
