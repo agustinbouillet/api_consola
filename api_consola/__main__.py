@@ -18,7 +18,7 @@ def open_url():
         url (str): URL a abrir.
     """
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    url = os.path.join(script_dir, 'code-generator', 'index.html')
+    url = os.path.join(script_dir, 'html', 'index.html')
     webbrowser.open('file://' + url) 
 
 

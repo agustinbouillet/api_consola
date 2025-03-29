@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='api_consola',
-    version='1.0.17',
+    version='1.0.18',
     author='Agustin Bouillet, Horacio Alvarado',
     author_email='bouilleta@jefatura.gob.ar',
     url='https://www.argentina.gob.ar/',
@@ -31,6 +31,9 @@ setuptools.setup(
         'setuptools==66.1.1',
         'firebase-admin==6.7.0',
     ],
+    package_data={
+        'api_consola': ['html/*.html'],
+    },
     project_urls={
         "Bug Tracker": "https://git.argentina.gob.ar/argentina/consola-notificaciones/api-consola/-/issues",
         "Source Code": "https://git.argentina.gob.ar/argentina/consola-notificaciones/api-consola",
