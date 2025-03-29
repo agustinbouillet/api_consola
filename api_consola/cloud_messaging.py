@@ -17,6 +17,7 @@ import datetime
 
 from firebase_admin import messaging
 
+
 def send_multicast(log_filename:str, registration_tokens:list=[], **kwargs:dict):
     # These registration tokens come from the client FCM SDKs.
     if (kwargs.get('url')):
@@ -61,3 +62,5 @@ def send_multicast(log_filename:str, registration_tokens:list=[], **kwargs:dict)
             # the registration tokens.
             failed_tokens.append(registration_tokens[idx])
             print(f'List of tokens that caused failures: {failed_tokens}')
+            
+    return responses

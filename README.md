@@ -1,6 +1,9 @@
 
 # 📦 API Consola
 
+## Versión actual
+1.0.14
+
 ## 🎛️ Instalación
 
 ### Instalación utilizando PIP _(Pip Installs Packages)_

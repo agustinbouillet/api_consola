@@ -9,18 +9,43 @@ from api_consola.push_notification import PushNotification
 
 
 def get_version():
+    """Obtiene la version del paquete.
+    Se utiliza pkg_resources para obtener la version del paquete
+
+    Returns:
+        str: Cadena de texto con la version del paquete.
+    """
     version = '0.0.0'
     try:
         version = pkg_resources.require("api_consola")[0].version
     except pkg_resources.DistributionNotFound:
         pass
 
-    line = '-' * 78
-    header = f'{line}\n PUSH NOTIFICATIONS\n Version: {version}\n{line}\n'
+    pkg_name = 'api_consola'
+    pkg_version = f'Version: {version}'
+    line = '=' * (len(pkg_version) + 4)
+    header = f'{line}\n  {pkg_name}\n  {pkg_version}\n{line}\n'
     return header 
 
 
-if __name__ == '__main__':
+def is_argparser_empty(namespace):
+    """''
+    Verifica si argparse está vacío.
+
+    Args:
+        namespace: objeto argparse.
+
+    Returns:
+        True si namespace está vacío (no se proporcionaron argumentos),
+    """
+    return not bool(vars(namespace))
+
+
+def main():
+    """
+    Se encarga de parsear los argumentos de la línea de comandos y 
+    ejecutar la función de envío de notificaciones push.
+    """
     parser = ArgumentParser(
         description=('Permite enviar mensajes Push a diversos dispositivos')
     )
@@ -102,10 +127,14 @@ if __name__ == '__main__':
     )
     args = parser.parse_args()
 
+    if not is_argparser_empty(args):
+        print('No se han ingresado argumentos.')
+        print('Obtenga ayuda con el comando -h o --help.')
+        sys.exit(1)
+
     if args.version:
         print(get_version())
         sys.exit(1)
-
 
     try:
         pn = PushNotification(
@@ -129,3 +158,6 @@ if __name__ == '__main__':
         print(formated_text_line_1, '\n')
         print(formated_text_line_2, '\n')
 
+
+if __name__ == '__main__':
+    main()
