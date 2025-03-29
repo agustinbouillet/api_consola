@@ -154,7 +154,8 @@ def main():
             size=args.size,
             group=args.group,
             image=args.image)
-    except:
+    except Exception as e:
+        print('Error: ', e)
         line_width=78
         text_line_1 = (
             'Error: No fue posible enviar la notificación. '
