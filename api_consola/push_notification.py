@@ -81,7 +81,8 @@ class PushNotification:
                     url=url, 
                     code=code, 
                     registration_ids=lote, 
-                    image=image)
+                    image=image
+                )
 
                 # Registro los envios.
                 logging.info(f"ENVIADO: range({counter}, {counter + int(size)})")

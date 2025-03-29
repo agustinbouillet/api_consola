@@ -28,6 +28,7 @@ def send_multicast(log_filename:str, registration_tokens:list=[], **kwargs:dict)
                 "body": kwargs.get('body'),
                 "description": kwargs.get('body'),
                 'source': 'jefatura',
+                'imageUrl': kwargs.get('image_url')
             },
             tokens=registration_tokens,
         )

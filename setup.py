@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='api_consola',
-    version='1.0.10',
+    version='1.0.11',
     author='Agustin Bouillet, Horacio Alvarado',
     author_email='bouilleta@jefatura.gob.ar',
     url='https://www.argentina.gob.ar/',
