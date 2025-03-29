@@ -1,11 +1,25 @@
 # -*- coding: utf-8 -*-
+import os
 import sys
 import textwrap
+import webbrowser
 from argparse import ArgumentParser
 
 import pkg_resources
 
 from api_consola.push_notification import PushNotification
+
+
+def open_url():
+    """Abre el generador de código en el navegador predeterminado 
+    del sistema operativo.
+
+    Args:
+        url (str): URL a abrir.
+    """
+    script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    url = os.path.join(script_dir, 'code-generator', 'index.html')
+    webbrowser.open('file://' + url) 
 
 
 def get_version():
@@ -40,7 +54,13 @@ def main():
         '-V',
         '--version',
         action='store_true',
-        help=('Show version.')
+        help=('Muestra la versión del paquete.')
+    )
+    parser.add_argument(
+        '-G',
+        '--generator',
+        action='store_true',
+        help=('Abre el generador de código en el navegador.')
     )
     parser.add_argument(
         '-t',
@@ -117,6 +137,11 @@ def main():
     if args.version:
         print(get_version())
         sys.exit(1)
+
+    if args.generator:
+        print(open_url())
+        sys.exit(1)
+
 
     try:
         pn = PushNotification(
