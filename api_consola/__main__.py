@@ -28,19 +28,6 @@ def get_version():
     return header 
 
 
-def is_argparser_empty(namespace):
-    """''
-    Verifica si argparse está vacío.
-
-    Args:
-        namespace: objeto argparse.
-
-    Returns:
-        True si namespace está vacío (no se proporcionaron argumentos),
-    """
-    return not bool(vars(namespace))
-
-
 def main():
     """
     Se encarga de parsear los argumentos de la línea de comandos y 
@@ -126,11 +113,6 @@ def main():
         help=('Directorio donde se guardan los logs.')
     )
     args = parser.parse_args()
-
-    if not is_argparser_empty(args):
-        print('No se han ingresado argumentos.')
-        print('Obtenga ayuda con el comando -h o --help.')
-        sys.exit(1)
 
     if args.version:
         print(get_version())

@@ -2,7 +2,7 @@
 # 📦 API Consola
 
 ## Versión actual
-1.0.14
+1.0.15
 
 ## 🎛️ Instalación
 
